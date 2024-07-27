@@ -12,38 +12,9 @@ http://localhost:5678/api/categories
 http://localhost:5678/api-docs/#/default/get_works
 */
 
-async function showArchitectProjects() {
-    try {
-        // Step 1: Fetch data from the API
-        const response = await fetch('http://localhost:5678/api/categories', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-        
-        // Step 2: Parse the response to JSON
-        const projects = await response.json();
-
-        // Step 3: Add each project to the gallery
-        const gallery = document.querySelector('.gallery');
-
-        projects.forEach(project => {
-            const projectElement = `
-                <div class="project-card">
-                    <h3>${project.name}</h3>
-                    <p>${project.description}</p>
-                    <img src="${project.imageURL}" alt="${project.name}">
-                </div>
-            `;
-            gallery.insertAdjacentHTML('beforeend', projectElement);
-        });
-        
-    } catch (error) {
-        console.error('Error fetching architect projects:', error);
-        alert("An error occurred while retrieving the architect's projects.");
-    }
+// filter for the categories //
+const figures = document.querySelector('.gallery').getElementsByTagName('figure');
+for (let i = 0; i < figures.length; i++) {
+    const figure = figures[i];
+    figure.style.display = category == figure.dataset.category || category == 0 ? "block" : "none";
 }
-
-// Call the function to execute it
-showArchitectProjects();
