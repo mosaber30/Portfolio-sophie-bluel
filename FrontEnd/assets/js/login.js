@@ -29,7 +29,7 @@ form.addEventListener('click', async (event) => {
 
             // new lines of code to add the token + Redirect to the home page
             localStorage.setItem('token', data.token);
-            window.location = 'index.html'
+            window.location = '../../index.html'
             return
         } else {
             document.getElementById('error-login').style.visibility = 'visible';
