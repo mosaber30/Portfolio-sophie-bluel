@@ -357,3 +357,10 @@ input[type="submit"] {
   color: #3d3d3d;
   text-decoration-line: underline;
 }
+
+
+#error-login {
+	color: #e32b2b;
+    text-align: center;
+	visibility: hidden;
+}
