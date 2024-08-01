@@ -1,8 +1,6 @@
-// console.log("hello world!");
+const form = document.getElementById('form-login');
 
-const form = document.getElementById('login-btn');
-
-form.addEventListener('click', async (event) => {
+form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const email = document.getElementById('email').value;
@@ -11,7 +9,6 @@ form.addEventListener('click', async (event) => {
     console.log(email);
     console.log(password);
 
-    // alert('you submitted your email and password');
 
     try {
         const response = await fetch('http://localhost:5678/api/users/login', {

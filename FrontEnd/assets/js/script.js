@@ -1,43 +1,11 @@
-/* step 1: link scrip.js to index html 
-step 2: in script.js there is a hello world console log 
-step 3: fetch API GET of the route of categories
-step 4: save the data form the API in a variable . name it data (or whatever i like)
-step 5: console.log the data (to have all the info)
-step 6: console.log the 5th work of data 
-step 7: console.log show only the title of the 5th work  
-*/
 
 /* http://localhost:5678/api/works
 http://localhost:5678/api/categories
 http://localhost:5678/api-docs/#/default/get_works
 */
 
-
-
-async function showWorks(){
-    try{
-        const response = await fetch('http://localhost:5678/api/works', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            console.log(data[4].title); 
-        } else {
-            console.error('Failed to fetch works:', response.statusText);
-        }
-    } catch (error) {
-        console.error('An error occurred:', error);
-    }
-}
-
-// console.log('hello')
-
-
-async function showCategories() {
+async function showWorks() {
+            // Fetch data from the API
     try {
         const response = await fetch('http://localhost:5678/api/works', {
             method: 'GET',
@@ -45,27 +13,38 @@ async function showCategories() {
                 'Accept': 'application/json'
             }
         });
-
+        // Check if the response is successful
         if (response.ok) {
             const data = await response.json();
             console.log(data);
-            console.log(data[4].title); 
+
+        // Select the gallery element where the works will be displayed
 
             const gallery = document.querySelector('.gallery');
+        
+        // Loop through each work item in the fetched data
             data.forEach(workItem => {
+
+            // Create a new figure element for each work item
+
                 const figure = document.createElement('figure');
+                figure.classList.add('project');
                 figure.setAttribute('data-category', workItem.categoryId);
-                figure.setAttribute('data-id', workItem.id);
+                figure.setAttribute('data-id', workItem.userId);
+
+            // Create an img element and set its src and alt attributes
 
                 const img = document.createElement('img');
                 img.src = workItem.imageUrl;
                 img.alt = workItem.title;
                 figure.appendChild(img);
 
+            // Create a figcaption element and set its text content
                 const figcaption = document.createElement('figcaption');
                 figcaption.textContent = workItem.title;
                 figure.appendChild(figcaption);
 
+            // Append the figure element to the gallery
                 gallery.appendChild(figure);
             });
         }
@@ -74,17 +53,76 @@ async function showCategories() {
     }
 }
 
+// calling the function 
+showWorks();
+
+async function showCategories() {
+    // Selecting the container where the category buttons will be display
+    const categoriesContainer = document.querySelector('.btn-list');
+
+
+    try {
+        // Fetch data from the API
+        const response = await fetch('http://localhost:5678/api/categories');
+        if (response.ok) {
+            const categories = await response.json();
+
+        // Loop through each category in the fetched data
+            categories.forEach(category => {
+                // Createing a new list item and button element for each category
+                const listItem = document.createElement('li');
+                const button = document.createElement('button');
+                button.innerText = category.name;
+                button.classList.add('btn');
+                button.dataset.category = category.id;
+                button.addEventListener('click', () => filterWorks(category.id));
+                listItem.appendChild(button);
+                categoriesContainer.appendChild(listItem);
+            });
+
+            // a button to show all projects
+            const allButton = document.createElement('button');
+            allButton.innerText = 'Tous';
+            allButton.classList.add('btn', 'btn-active');
+            allButton.dataset.category = 0;
+            allButton.addEventListener('click', () => filterWorks(0));
+            const allListItem = document.createElement('li');
+            allListItem.appendChild(allButton);
+            categoriesContainer.prepend(allListItem);
+
+            // Filter works to mak sure the filter selected in highlighted in green
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(item => {
+            item.addEventListener('click', (e) => {
+                for (const btn of buttons) {
+                    btn.classList.remove('btn-active');
+                }
+            
+                e.target.classList.toggle("btn-active");
+                filterWorks(e.target.dataset.category);
+            })
+        })
+
+        } else {
+            console.error('Failed to fetch categories');
+        }
+    } catch (error) {
+        console.error('An error occurred while fetching categories:', error);
+    }
+}
+
+// calling the function 
 showCategories();
 
 
-
-// filter for the categories //
 function filterWorks(category) {
-    const figures = document.querySelector('.gallery').getElementsByTagName('figure');;
-     for (let i = 0; i < figures.length; i++) {
-         const figure = figures[i];
-         figure.style.display = category == figure.dataset.category || category == 0 ? "block" : "none";
+    // Loop through each figure element in the gallery
+    for (const figure of document.querySelector('.gallery').getElementsByTagName("figure")) {
+        // Show or hide the figure based on its category
+        if (category == figure.dataset.category || category == 0) {
+            figure.style.display = "block";
+        } else {
+            figure.style.display = "none";
         }
-    };
-    
-    filterWorks();
+    }
+}

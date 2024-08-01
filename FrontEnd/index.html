@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+	
 <head>
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
@@ -11,6 +12,15 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+
+
+
+	<div class="editmode">
+		<p><img src="./assets/icons/user-edit-svgrepo-com.svg" alt="edit icon">Mode édition</p>
+		<button>publier les changements</button>
+	</div>
+
+
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -22,7 +32,8 @@
 				  <a href="#contact">contact</a>
 			</li>
 			  <li>
-				<a href="./login.html">login</a>
+				<a id="nav-login" href="./login.html">login</a>
+				<a id="nav-logout" class="admin" href="#" hidden>logout</a>
 			</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
@@ -31,8 +42,9 @@
 <main>
 	<section id="introduction">
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
+			<img src="./assets/images/sophie-bluel.png" alt="Picture of Sophie Bluel">
 		</figure>
+		
 		<article>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
@@ -40,54 +52,27 @@
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
 	</section>
+
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div class="gallery">
-			<!-- <figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure> -->
+		<h2>
+			Mes Projets
+			<button class="edit-btn">
+				<img src="./assets/icons/user-edit-svgrepo-com.svg" alt="edit icon">
+				modifier
+			</button>
+		</h2>
+		
+		<div class="filter">
+			<ul class="btn-list">
+				<!-- categories are inserted here from the API -->
+				<li>
+					<button class="btn btn-active" data-category="0" hidden>Tous</button> 
+				</li>
+			</ul>
 		</div>
+        <div class="gallery" id="gallery">
+            <!-- Projects are dynamically inserted here from the API -->
+        </div>
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>
@@ -102,6 +87,9 @@
 			<input type="submit" value="Envoyer">
 		</form>
 	</section>
+
+    </div>
+</div>
 </main>
 
 <footer>
