@@ -5,53 +5,52 @@ http://localhost:5678/api-docs/#/default/get_works
 */
 
 async function showWorks() {
-            // Fetch data from the API
     try {
+        // Fetch data from the API
         const response = await fetch('http://localhost:5678/api/works', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
             }
         });
+
         // Check if the response is successful
         if (response.ok) {
             const data = await response.json();
             console.log(data);
 
-        // Select the gallery element where the works will be displayed
-
+            // Select the gallery element where the works will be displayed
             const gallery = document.querySelector('.gallery');
-        
-        // Loop through each work item in the fetched data
+
+            // Loop through each work item in the fetched data
             data.forEach(workItem => {
-
-            // Create a new figure element for each work item
-
+                // Create a new figure element for each work item
                 const figure = document.createElement('figure');
                 figure.classList.add('project');
                 figure.setAttribute('data-category', workItem.categoryId);
                 figure.setAttribute('data-id', workItem.userId);
 
-            // Create an img element and set its src and alt attributes
-
+                // Create an img element and set its src and alt attributes
                 const img = document.createElement('img');
                 img.src = workItem.imageUrl;
                 img.alt = workItem.title;
                 figure.appendChild(img);
 
-            // Create a figcaption element and set its text content
+                // Create a figcaption element and set its text content
                 const figcaption = document.createElement('figcaption');
                 figcaption.textContent = workItem.title;
                 figure.appendChild(figcaption);
 
-            // Append the figure element to the gallery
+                // Append the figure element to the gallery
                 gallery.appendChild(figure);
             });
+        } else {
+            throw new Error('Failed to fetch works: ' + response.statusText);
         }
-    } finally {
-        
+    } catch (error) {
+        throw new Error('Fetch did not work out due to: ' + error.message);
     }
-}
+};
 
 // calling the function 
 showWorks();
@@ -125,4 +124,27 @@ function filterWorks(category) {
             figure.style.display = "none";
         }
     }
+}
+
+
+// when the user login 
+if (localStorage.getItem('token') !== null) {
+    //show the edit button
+    document.querySelector('.edit-mode').style.display = 'flex';
+    document.querySelector('.edit-btn').style.display = 'inline-flex';
+
+    // change the login text to logout 
+    const linkLoginBtn = document.querySelector('.link-login');
+    linkLoginBtn.innerHTML = 'Logout';
+    linkLoginBtn.href = '#'
+
+    // logging out 
+    linkLoginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    window.location = 'index.html'
+    })
+
+    //hide the filter buttons 
+    document.querySelector('.filter').style.display = 'none';
 }
