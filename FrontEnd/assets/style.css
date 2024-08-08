@@ -408,24 +408,23 @@ input[type="submit"] {
 /* modal section */
 
 .modal-container {
-	background: rgba(0, 0, 0, 0.03);
+	background: rgba(0, 0, 0, 0.3);
 	position: fixed;
 	width: 100%;
 	height: 100%;
 	left: 0;
-	z-index: 10;
-	/* display: none; */
+	z-index: 1;
+	display: none;
 	justify-content: center;
-	align-content: center;
+	align-items: center;
 }
 
 .modal {
-	background: white;
+	background: #FFFFFF;
 	border-radius: 10px;
-	width: 630px;
+	width: calc(630px - 60px);
 	height: auto;
 	padding: 26px 30px 55px;
-
 }
 
 .modal-top-btn {
@@ -435,6 +434,12 @@ input[type="submit"] {
 	margin-bottom: 10px;
 }
 
+.modal-title{
+	font-family: 'Work Sans', sans-serif;
+	font-size: 26px;
+	font-weight: 400;
+	text-align: center;
+}
 
 .modal-close {
 	width: 24px;
@@ -445,13 +450,57 @@ input[type="submit"] {
 }
 
 .modal-comeback {	
-	/* visibility: hidden; */
+	visibility: hidden; 
 	width: 21px;
     height: 21px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
 }
+
+.modal-gallery {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    margin: 46px calc(105px - 30px) 0;
+    row-gap: 16px;
+}
+
+.modal-gallery figure {
+	position: relative;
+	width: 77px;
+	height: 103px;
+}
+
+
+.modal-gallery figure::after {
+	content: '';
+    position: absolute;
+    top: 6px;
+	right: 26px;
+    background-color: #000000;
+    background-image: url('../assets/icons/bin-icon.svg');
+	background-repeat: no-repeat;
+    background-position: center;
+    width: 17px;
+    height: 17px;
+	border-radius: 2px;
+	opacity: 0;
+	cursor: move;
+	transition: opacity 250ms ease-in-out;
+}
+
+
+.modal-gallery figure > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.modal-gallery figure figcaption {
+	font-size: 12px;
+}
+
 
 .modal-title {
 	font-family: 'Work Sans', sans-serif;
@@ -460,15 +509,17 @@ input[type="submit"] {
 	text-align: center;
 }
 
-.modal-buttom-btn {
+.modal-bottom-btn {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 23px;
+	margin: 38px calc(105px - 30px) 0;
 	padding-top: 47px;
     border-top: 1px solid #B3B3B3;
 }
 
-.modal-buttom-btn button {
+.modal-bottom-btn button {
 	background: #1D6154;
 	border-radius: 60px;
 	font-family: 'Syne';
@@ -479,7 +530,7 @@ input[type="submit"] {
 }
 
 .modal-addWork {
-	/* display: none; */
+	display: none;
 	margin: 36px calc(105px - 30px) 0;
 }
 
@@ -512,6 +563,9 @@ input[type="submit"] {
     bottom: 23%;
 }
 
+.upload-work-form input[type="file"]:hover .upload-work button {
+	opacity: 0.8;
+}
 
 .upload-work-form img {
 	width: 58px;
@@ -568,4 +622,8 @@ input[type="submit"] {
 	font-size: 14px;
 	font-weight: 400;
 	color: #444444;
+}
+
+.btn-submit-work {
+	width: 237px;
 }
