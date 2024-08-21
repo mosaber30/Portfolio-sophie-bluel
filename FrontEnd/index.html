@@ -12,61 +12,58 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-
-	<div class="modal-container">
-		<div class="modal">
-			<div class="modal-top-btn">
-				<button class="modal-comeback">
+<!-- Modal Structure -->
+<div class="modal-container">
+	<div class="modal">
+		<div class="modal-top-btn">
+			<button class="modal-comeback">
 				<img src="/FrontEnd/assets/icons/left_arrow-icon.svg" alt="left arrow icon">
-				</button>
-				<button class="modal-close">
-					<img src="/FrontEnd/assets/icons/close-icon.svg" alt="close icon">
-				</button>
-			</div>
+			</button>
+			<button class="modal-close">
+				<img src="/FrontEnd/assets/icons/close-icon.svg" alt="close icon">
+			</button>
+		</div>
 
-			<p class="modal-title"></p>
-
+		<!-- Modal Step One (Gallery) -->
+		<div class="modal-gallery-step-one">
+			<p class="modal-title">Galerie photo</p>
 			<div class="modal-gallery"></div>
+			<div class="modal-bottom-btn">
+				<button class="btn-addWork btn-valid-addWork">Ajouter une photo</button>
+			</div>
+		</div>
 
-
-			<div class="modal-addWork">
-				<form id="addWork-form">
-					<div class="upload-work">
-						<div class="upload-work-img"></div>
-						<div class="upload-work-form">
-							<img src="/FrontEnd/assets/icons/picture-icon.svg" alt="Picture Icon">
-							<input type="file" name="image" accept=".png .jpg" class="img-addWork" required>
-							<button> + Ajouter photo</button>
-							<p>jpg, png, 4mo max</p>
-						</div>
+		<!-- Modal Step Two (Add Work) -->
+		<div class="modal-gallery-step-two modal-addWork">
+			<p class="modal-title">Ajout photo</p>
+			<form id="addWork-form">
+				<div class="upload-work">
+					<div class="upload-work-img"></div>
+					<div class="upload-work-form">
+						<img src="/FrontEnd/assets/icons/picture-icon.svg" alt="Picture Icon">
+						<input type="file" name="image" accept=".png, .jpg" class="img-addWork" required>
+						<button> + Ajouter photo</button>
+						<p>jpg, png, 4mo max</p>
 					</div>
-
+				</div>
 
 				<div class="inputs-addWork">
-				<label for="title">Titre</label>
-				<input type="text" id="title" name="title" class="title-addWork" required>
+					<label for="title">Titre</label>
+					<input type="text" id="title" name="title" class="title-addWork" required>
 
-				<label for="category">Catégorie</label>
-				<select name="category" id="category" class="categories-addWork"></select>
-			</div>
+					<label for="category">Catégorie</label>
+					<select name="category" id="category" class="categories-addWork"></select>
+				</div>
 
-
-			<input type="submit" value="Vlider" class="btn-submit-work">
-		</form>
-		</div>
-		
-		<div class="modal-bottom-btn">
-			<button class="btn-addWork btn-valid-addWork">Ajouter une photo</button>
+				<input type="submit" value="Valider" class="btn-submit-work inactive">
+			</form>
 		</div>
 	</div>
-	</div>
-
-
+</div>
+	
 	<div class="edit-mode">
 		<p><img src="./assets/icons/user-edit-svgrepo-com.svg" alt="edit icon">Mode édition</p>
 	</div>
-
-
 
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>

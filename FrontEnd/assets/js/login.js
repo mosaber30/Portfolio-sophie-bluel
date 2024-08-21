@@ -1,5 +1,12 @@
 const form = document.getElementById('form-login');
+const errorLogin = document.getElementById('error-login');
 
+form.addEventListener('focusin', (event) => {
+    if (event.target.tagName === 'INPUT') {
+        errorLogin.style.visibility = 'hidden';
+    }
+});
+// addEventListener listen to the changes of inputs to delete message error 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
