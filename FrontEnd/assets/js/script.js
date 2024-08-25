@@ -7,7 +7,7 @@ async function fetchWorks() {
       headers: {
         Accept: "application/json",
       },
-    });
+  });
 
     if (response.ok) {
       return await response.json();
@@ -267,7 +267,6 @@ async function addWork() {
       }
   }
   catch(error) {
-      alert("Une erreur est survenue lors de l'ajout d'un nouveau projet.");
       console.log(error);
   }
 }
@@ -286,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       // document.querySelector(".edit-btn").style.display = "inline-flex";
-      const editBttn = document.querySelector(".edit-btn");
+      const editBttn = document.querySelector(".edi§t-btn");
       if(editBttn){
         editBttn.style.display = "inline-flex";
       }

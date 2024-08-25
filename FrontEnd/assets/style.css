@@ -643,7 +643,7 @@ input[type="submit"] {
 
 .btn-del-icon {
     position: absolute;
-    background-color: white;
+	background-color: black;
     border-radius: 2px;
     width: 17px;
     height: 17px;
